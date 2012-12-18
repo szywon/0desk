@@ -1,0 +1,125 @@
+#!/bin/bash
+
+OUTPUT_NAME_CLASS='[A-Z]+\d+'
+FULL_OUTPUT_NAME_CLASS=$OUTPUT_NAME_CLASS'(?= (dis)?connected)'
+XRANDR_TEXT='/tmp/xrandr-'$USER
+
+xrandr > $XRANDR_TEXT
+
+function LidIsClosed {
+  dbus-send --system --print-reply \
+    --dest=org.freedesktop.UPower \
+    /org/freedesktop/UPower \
+    org.freedesktop.DBus.Properties.Get \
+    string:org.freedesktop.UPower string:LidIsClosed | grep -q true
+}
+
+function Disconnected {
+  grep -Po $OUTPUT_NAME_CLASS'(?= disconnected)' $XRANDR_TEXT
+  if LidIsClosed; then
+    echo "LVDS1"
+  fi
+}
+
+function Connected {
+  grep -Po $OUTPUT_NAME_CLASS'(?= connected)' $XRANDR_TEXT | if LidIsClosed; then
+    grep -v "LVDS1"
+  else
+    cat
+  fi
+}
+
+allModes=$(grep -Po '(\d+x\d+)|'"$FULL_OUTPUT_NAME_CLASS" $XRANDR_TEXT)
+
+function ModesOf {
+  echo $allModes | grep -Po '(?<='"$1"' )(\d+x\d+ )+'
+}
+
+function FilterModes {
+  modes=$(ModesOf $1)
+  while [ -n "$2" ]; do
+    modes=$(echo $modes | grep -Po $(ModesOf $2 | tr ' ' '|'))
+    shift 1
+  done
+  echo $modes
+}
+
+function BestCommonMode {
+  FilterModes $* | cut -d ' ' -f 1
+}
+
+function EchoRun {
+  echo $*
+  $*
+  [ -f ~/.fehbg ] && sh ~/.fehbg
+}
+
+connected=$(Connected)
+first=$(echo $connected | cut -d ' ' -f 1)
+rest=$(echo $connected | cut -d ' ' -f 2-)
+
+disconnected=$(Disconnected)
+off=$(for out in $disconnected; do echo --output $out --off; done)
+
+function Cloned {
+  EchoRun xrandr $off \
+    --output $first --primary $* \
+    $(for out in $rest; do echo --output $out --same-as $first $*; done)
+}
+
+function Stack {
+  EchoRun xrandr $off \
+    --output $first --primary --auto \
+    $(for out in $rest; do \
+      echo --output $out --auto $1 $first; \
+      first=$out; \
+    done)
+}
+
+function HelpText {
+cat <<END
+A simple video output controller.
+Allows to compose connected outputs in various ways.
+Discards LVDS1 (the usual laptop screen output) if the lid is closed.
+
+Usage: monitors <command>
+
+Commands:
+
+  mirror - set a maximum resolution possible on all monitors
+           and display the same view on them
+  auto   - set all screens to their automatic resolutions, no change
+           to the relative positions is made
+  clone  - like 'auto' and positions all views to a shared upper left
+           corner
+  horiz  - like 'auto' and arrange views horizontally
+  vert   - like 'auto' and arrange views vertically
+
+END
+}
+
+case $1 in
+  auto)
+    EchoRun xrandr $off \
+      $(for out in $connected; do echo --output $out --auto; done)
+  ;;
+  clone)
+    Cloned --auto
+  ;;
+  mirror)
+    Cloned --mode $(BestCommonMode $connected)
+  ;;
+  horiz*)
+    Stack --right-of
+  ;;
+  vert*)
+    Stack --above
+  ;;
+  *)
+    HelpText
+    echo -e "Current state of the outputs:\n"
+    echo "  Connected:   " $connected
+    echo "  Disconnected:" $disconnected
+    echo
+  ;;
+esac

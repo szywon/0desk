@@ -1,0 +1,6 @@
+#!/bin/sh
+
+dbus-monitor --system "type='signal',sender='org.freedesktop.UPower',interface='org.freedesktop.UPower'"\
+| grep -o --line-buffered Sleeping | while read line; do
+    xlock
+done

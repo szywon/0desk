@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec i3lock -c 000000 -i /usr/share/icons/gnome/256x256/status/dialog-password.png

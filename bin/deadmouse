@@ -1,0 +1,64 @@
+#!/usr/bin/python2
+
+import pygtk
+import gtk
+import subprocess
+
+pygtk.require('2.0')
+
+deadbeef = 'deadbeef --'
+volume = 'amixer sset Master 1%'
+
+click_cmds = {
+    1: deadbeef + 'play-pause',
+    2: 'zzz',
+    8: deadbeef + 'prev',
+    9: deadbeef + 'next'
+}
+
+scroll_cmds = {
+    gtk.gdk.SCROLL_UP: volume + '+',
+    gtk.gdk.SCROLL_DOWN: volume + '-'
+}
+
+
+def click(widget, event):
+    cmd = click_cmds[event.button]
+    subprocess.call(cmd.split(' '))
+    if (cmd == 'zzz'):
+        gtk.main_quit()
+
+
+def scroll(widget, event):
+    cmd = scroll_cmds[event.direction]
+    subprocess.call(cmd.split(' '))
+
+
+def close(widget, event):
+    gtk.main_quit()
+
+
+window = gtk.Window(gtk.WINDOW_TOPLEVEL)
+
+event_box = gtk.EventBox()
+event_box.modify_bg(gtk.STATE_NORMAL, gtk.gdk.Color('#000'))
+
+icon = gtk.Image()
+icon.set_from_file('/usr/share/icons/hicolor/scalable/apps/deadbeef.svg')
+
+event_box.add(icon)
+window.add(event_box)
+
+window.set_title('Dead Pilot')
+window.set_icon_name('deadbeef')
+window.fullscreen()
+
+event_box.connect('button_release_event', click)
+event_box.connect('scroll_event', scroll)
+window.connect('delete_event', close)
+
+icon.show()
+event_box.show()
+window.show()
+
+gtk.main()
