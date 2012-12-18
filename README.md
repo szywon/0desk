@@ -92,3 +92,7 @@ TDB.
 ## Development and Pull Requests
 
 Please base your patches on the `src` branch.
+
+## License
+
+MIT, check the COPYING file.
