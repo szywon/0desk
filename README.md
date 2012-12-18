@@ -2,6 +2,10 @@
 
 An opinionated set of configs and tools for living without a "proper" desktop environment.
 
+Here's how it looks like:
+
+![0desk screenshot](http://szywon.github.com/0desk/screenshot.png)
+
 Included stuff:
 
 - some utils in bin
