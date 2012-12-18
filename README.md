@@ -24,7 +24,7 @@ Included stuff:
 **deadmouse** is a dead pilot for DeaDBeeF.
 It's designed to be used with a wireless mouse to control the player.
 It displays a full-screen window to catch all mouse input (and so you can turn off the monitor).
-To turn it off you have to use keyboard like Alt-Tab, Alt-F4, etc.
+To close the application you have to use keyboard like Alt-Tab, Alt-F4, etc.
 Button mapping:
 
 - left: toggle play/pause
