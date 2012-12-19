@@ -1,36 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openbox_menu xmlns="http://openbox.org/3.4/menu">
-  <menu id="system-menu" label="System">
+  <menu id="system-menu" label="Configuration">
+    <item label="Preferred Applications">
+      <action name="Execute"><command>exo-preferred-applications</command></action>
+    </item>
+    <item label="Printers">
+      <action name="Execute">
+        <command>system-config-printer</command>
+      </action>
+    </item>
+    <separator/>
     <item label="ObConf">
       <action name="Execute">
         <command>obconf</command>
       </action>
     </item>
-    <item label="Manage Cups Printers">
+    <item label="ObMenu">
       <action name="Execute">
-        <command>xdg-open http://localhost:631/</command>
-        <startupnotify>
-          <enabled>no</enabled>
-          <icon>cups</icon>
-        </startupnotify>
+        <command>obmenu</command>
       </action>
     </item>
-    <separator/>
     <item label="Reload Openbox Configuration">
       <action name="Reconfigure"/>
     </item>
   </menu>
   <menu id="root-menu" label="Openbox 3">
-    <separator label="Programs"/>
+    <separator label="Basic"/>
     <item label="Files">
-      <action name="Execute"><command>thunar</command></action>
+      <action name="Execute"><command>exo-open .</command></action>
     </item>
-    <item label="Chromium">
-      <action name="Execute"><command>chromium</command></action>
+    <item label="Web">
+      <action name="Execute"><command>exo-open --launch WebBrowser</command></action>
     </item>
-    <item label="Thunderbird">
-      <action name="Execute"><command>thunderbird</command></action>
+    <item label="Mail">
+      <action name="Execute"><command>exo-open --launch MailReader</command></action>
     </item>
+    <separator label="Programs" />
     <item label="Sublime Text">
       <action name="Execute"><command>subl</command></action>
     </item>
@@ -57,10 +62,11 @@
       <action name="Execute"><command>xfce4-appfinder</command></action>
     </item>
 
-    <separator />
-    <menu id="system-menu"/>
+    <separator label="System"/>
 
-    <separator label="Power"/>
+    <menu id="system-menu"/>
+    <separator />
+
     <item label="Zzz...">
       <action name="Execute">
         <command>zzz</command>
@@ -69,9 +75,7 @@
     <item label="Hibernate">
       <action name="Execute">
         <command>zzz hard</command>
-        <prompt>
-          Hibernate?
-        </prompt>
+        <prompt>Hibernate?</prompt>
       </action>
     </item>
     <item label="Logout">
@@ -79,20 +83,16 @@
         <prompt>yes</prompt>
       </action>
     </item>
-    <item label="Restart">
+    <item label="Reboot">
       <action name="Execute">
         <command>reboot</command>
-        <prompt>
-          Reboot?
-        </prompt>
+        <prompt>Reboot?</prompt>
       </action>
     </item>
     <item label="Power Off">
       <action name="Execute">
         <command>poweroff</command>
-        <prompt>
-          Power Off?
-        </prompt>
+        <prompt>Power Off?</prompt>
       </action>
     </item>
   </menu>
