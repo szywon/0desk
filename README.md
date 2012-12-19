@@ -83,7 +83,7 @@ Windows management:
 
 Dependencies (names as in ArchLinux):
 
-> i3lock alsa-utils openbox tint2 feh network-manager-applet batti volumeicon thunar exo terminal pygtk xorg-xrandr xorg-xrdb xorg-xev gnome-icon-theme xfce4-appfinder xfce4-notifyd xfce4-screenshooter
+> i3lock alsa-utils openbox tint2 feh network-manager-applet batti volumeicon thunar exo terminal pygtk xorg-xrandr xorg-xrdb xorg-xev gnome-icon-theme xfce4-appfinder xfce4-notifyd xfce4-screenshooter system-config-printer-gnome htop
 
 From AUR:
 
