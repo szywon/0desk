@@ -93,10 +93,6 @@ Clone to ~/.0desk or ~/.config/0desk
 
 TDB.
 
-## Development and Pull Requests
-
-Please base your patches on the `src` branch.
-
 ## License
 
 MIT, check the COPYING file.
