@@ -21,6 +21,8 @@ Included stuff:
 
 **zzz** puts computer to sleep using dbus. `zzz hard` puts computer to hibernate mode.
 
+**wallpaper** simple graphical wallpaper selector.
+
 **deadmouse** is a dead pilot for DeaDBeeF.
 It's designed to be used with a wireless mouse to control the player.
 It displays a full-screen window to catch all mouse input (and so you can turn off the monitor).

@@ -1,0 +1,115 @@
+#!/usr/bin/python2
+
+import pygtk
+import gtk
+import gio
+import os
+import re
+import subprocess
+
+pygtk.require('2.0')
+
+modes = {
+    'center': 'Set FILE as centered desktop background',
+    'fill':   'Like \'scale\', but preserves aspect ratio by zooming the image until it fits. May cut off corners',
+    'max':    'Like \'fill\', but scale the image to the maximum size that fits the screen with black borders on one side',
+    'scale':  'Set file as scaled desktop background. This will fill the whole background, but the images\' aspect ratio may not be preserved',
+    'tile':   'Set file as tiled desktop background'
+}
+
+mode_names = modes.keys()
+mode_indexes = {}
+for i in range(len(mode_names)):
+    mode_indexes[mode_names[i]] = i
+
+
+def read_config():
+    config_re = re.compile(r"""feh\s+--bg-(?P<mode>\w+)\s+'(?P<path>[^"']+)'""")
+    try:
+        file = open(os.getenv('HOME') + '/.fehbg')
+        match = config_re.match(file.read())
+        file.close()
+        return {'path': match.group('path'), 'mode': match.group('mode')}
+    except:
+        return {'path': None, 'mode': 'fill'}
+
+
+old_config = read_config()
+
+window = gtk.Window(gtk.WINDOW_TOPLEVEL)
+window.set_title('Set the Wallpaper')
+window.set_icon_name('wallpaper')
+window.set_geometry_hints(min_width=600, min_height=500)
+
+rows = gtk.VBox()
+buttons = gtk.HBox(spacing=10)
+
+chooser = gtk.FileChooserWidget()
+
+mode_list = gtk.combo_box_new_text()
+for text in mode_names:
+    mode_list.append_text(text)
+
+reset_button = gtk.Button('Reset')
+mode_label = gtk.Label('Arrangement:')
+padding = gtk.Label()
+
+
+def close(widget, event):
+    gtk.main_quit()
+
+
+last_config = old_config
+
+
+def apply_config(config):
+    global last_config
+    if config['path'] and config['mode']:
+        path = config['path']
+        mode = config['mode']
+        if path != last_config['path'] or mode != last_config['mode']:
+            cmd = ['feh', '--bg-' + mode, path]
+            subprocess.call(cmd)
+            last_config = config
+
+
+def config_from_ui(widget):
+    config = {
+        'mode': mode_names[mode_list.get_active()],
+        'path': chooser.get_filename()
+    }
+    apply_config(config)
+
+
+def reset(widget):
+    set_controls(old_config)
+
+
+def set_controls(config):
+    try:
+        mode_list.set_active(mode_indexes[config['mode']])
+        if config['path']:
+            chooser.select_file(gio.File(config['path']))
+    except:
+        pass
+
+set_controls(old_config)
+
+window.connect('delete-event', close)
+chooser.connect('selection-changed', config_from_ui)
+mode_list.connect('changed', config_from_ui)
+reset_button.connect('clicked', reset)
+
+buttons.pack_start(mode_label, expand=False)
+buttons.pack_start(mode_list, expand=False)
+buttons.pack_start(padding)
+buttons.pack_start(reset_button, expand=False)
+rows.pack_start(chooser)
+rows.pack_start(buttons, expand=False)
+window.add(rows)
+
+[widget.show() for widget in [
+    chooser, mode_label, mode_list, reset_button, padding, buttons, rows, window
+]]
+
+gtk.main()

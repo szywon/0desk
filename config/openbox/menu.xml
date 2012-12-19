@@ -2,11 +2,18 @@
 <openbox_menu xmlns="http://openbox.org/3.4/menu">
   <menu id="system-menu" label="Configuration">
     <item label="Preferred Applications">
-      <action name="Execute"><command>exo-preferred-applications</command></action>
+      <action name="Execute">
+        <command>exo-preferred-applications</command>
+      </action>
     </item>
     <item label="Printers">
       <action name="Execute">
         <command>system-config-printer</command>
+      </action>
+    </item>
+    <item label="Wallpaper">
+      <action name="Execute">
+        <command>wallpaper</command>
       </action>
     </item>
     <separator/>
