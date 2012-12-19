@@ -411,6 +411,11 @@
         <command>xfce4-screenshooter -mw -o xdg-open</command>
       </action>
     </keybind>
+    <keybind key="C-A-Delete">
+      <action name="Execute">
+        <command>terminal --maximize -T htop -e htop</command>
+      </action>
+    </keybind>
   </keyboard>
   <mouse>
     <dragThreshold>1</dragThreshold>
