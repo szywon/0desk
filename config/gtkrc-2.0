@@ -3,3 +3,4 @@ gtk-theme-name = "Zero"
 gtk-menu-popup-delay = 0
 gtk-toolbar-style = GTK_TOOLBAR_ICONS
 gtk-button-images = 0
+gtk-menu-images = 1
