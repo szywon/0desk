@@ -1,5 +1,27 @@
 #!/bin/bash
 
+function HelpText {
+cat <<END
+A simple video output controller.
+Allows to compose connected outputs in various ways.
+Discards LVDS1 (the usual laptop screen output) if the lid is closed.
+
+Usage: monitors <command>
+
+Commands:
+
+  mirror - set a maximum resolution possible on all monitors
+           and display the same view on them
+  auto   - set all screens to their automatic resolutions, no change
+           to the relative positions is made
+  clone  - like 'auto' and positions all views to a shared upper left
+           corner
+  horiz  - like 'auto' and arrange views horizontally
+  vert   - like 'auto' and arrange views vertically
+
+END
+}
+
 OUTPUT_NAME_CLASS='[A-Z]+\d+'
 FULL_OUTPUT_NAME_CLASS=$OUTPUT_NAME_CLASS'(?= (dis)?connected)'
 XRANDR_TEXT='/tmp/xrandr-'$USER
@@ -74,28 +96,6 @@ function Stack {
       echo --output $out --auto $1 $first; \
       first=$out; \
     done)
-}
-
-function HelpText {
-cat <<END
-A simple video output controller.
-Allows to compose connected outputs in various ways.
-Discards LVDS1 (the usual laptop screen output) if the lid is closed.
-
-Usage: monitors <command>
-
-Commands:
-
-  mirror - set a maximum resolution possible on all monitors
-           and display the same view on them
-  auto   - set all screens to their automatic resolutions, no change
-           to the relative positions is made
-  clone  - like 'auto' and positions all views to a shared upper left
-           corner
-  horiz  - like 'auto' and arrange views horizontally
-  vert   - like 'auto' and arrange views vertically
-
-END
 }
 
 case $1 in
