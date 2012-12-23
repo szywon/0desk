@@ -53,7 +53,11 @@ Button mapping:
       horiz  - like 'auto' and arrange views horizontally
       vert   - like 'auto' and arrange views vertically
 
-## Usage
+## Usage Tips
+
+There's no menu or launchers in the task bar.
+Instead the Openbox menu is used.
+It can be reached clicking the right button anywhere on the desktop *or* on the taskbar.
 
 Some extra global short-cuts defined Openbox config:
 
@@ -80,12 +84,13 @@ Windows management:
 - Scroll Down on a title bar: restore / minimize
 - Scroll Up on task bar: activate
 - Scroll Down on task bar: minimize
+- Middle button on task bar: close
 
 ## Installation
 
 Dependencies (names as in ArchLinux):
 
-> i3lock alsa-utils openbox tint2 feh network-manager-applet batti volumeicon thunar exo terminal pygtk xorg-xrandr xorg-xrdb xorg-xev gnome-icon-theme xfce4-appfinder xfce4-notifyd xfce4-screenshooter system-config-printer-gnome htop
+> i3lock alsa-utils openbox tint2 feh network-manager-applet batti volumeicon thunar exo terminal pygtk xorg-xrandr xorg-xrdb gnome-icon-theme xfce4-appfinder xfce4-notifyd xfce4-screenshooter system-config-printer-gnome htop
 
 From AUR:
 
