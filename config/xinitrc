@@ -5,16 +5,14 @@ export `dbus-launch`
 export PATH="$PATH:$HOME/.0desk/bin"
 export BROWSER=exo-open
 
-if [[ -n "`xrandr | grep "DP1 con"`" ]]; then
-	xrandr --output LVDS1 --off --output DP1 --auto
-fi
+monitors auto
 
-sh .fehbg &
+[[ -f ~/.fehbg ]] && (sh ~/.fehbg &)
 
-(sleep 1 && tint2) &
-(sleep 1 && nm-applet) &
-(sleep 1 && volumeicon) &
-(sleep 1 && batti) &
+tint2 &
+nm-applet &
+volumeicon &
+batti &
 
 autolock &
 
