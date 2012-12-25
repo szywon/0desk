@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openbox_menu xmlns="http://openbox.org/3.4/menu">
   <menu id="system-menu" label="Configuration">
+    <separator label="Settings" />
     <item label="Preferred Applications">
       <action name="Execute">
         <command>exo-preferred-applications</command>
@@ -16,7 +17,35 @@
         <command>wallpaper</command>
       </action>
     </item>
-    <separator/>
+
+    <separator label="Monitors" />
+    <item label="Arrange Horizontally">
+      <action name="Execute">
+        <command>monitors horiz</command>
+      </action>
+    </item>
+    <item label="Arrange Vertically">
+      <action name="Execute">
+        <command>monitors vert</command>
+      </action>
+    </item>
+    <item label="Mirror">
+      <action name="Execute">
+        <command>monitors mirror</command>
+      </action>
+    </item>
+    <item label="Clone">
+      <action name="Execute">
+        <command>monitors clone</command>
+      </action>
+    </item>
+    <item label="Auto">
+      <action name="Execute">
+        <command>monitors auto</command>
+      </action>
+    </item>
+
+    <separator label="Openbox" />
     <item label="ObConf">
       <action name="Execute">
         <command>obconf</command>
@@ -27,7 +56,7 @@
         <command>obmenu</command>
       </action>
     </item>
-    <item label="Reload Openbox Configuration">
+    <item label="Reload Configuration">
       <action name="Reconfigure"/>
     </item>
   </menu>
