@@ -70,6 +70,7 @@ function BestCommonMode {
 function EchoRun {
   echo $*
   $*
+  xrandr --dpi 96
   [ -f ~/.fehbg ] && sh ~/.fehbg
 }
 
