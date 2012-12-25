@@ -6,7 +6,7 @@
 # ID 1
 rounded = 0
 border_width = 0
-background_color = #000000 70
+background_color = #000000 69
 border_color = #000000 60
 
 # ID 2
@@ -18,8 +18,8 @@ border_color = #FFFFFF 40
 # ID 3
 rounded = 0
 border_width = 1
-background_color = #FFFFFF 1
-border_color = #FFFFFF 1
+background_color = #FFFFFF 0
+border_color = #FFFFFF 0
 
 # ID 4
 rounded = 0
@@ -80,7 +80,7 @@ task_font = Sans 9
 task_font_color = #FFFFFF 80
 task_active_font_color = #FFFFFF 100
 task_urgent_font_color = #FFFFFF 80
-task_iconified_font_color = #FFFFFF 25
+task_iconified_font_color = #FFFFFF 24
 font_shadow = 0
 
 # System Tray
@@ -102,12 +102,12 @@ clock_background_id = 0
 
 # Tooltips
 tooltip = 1
-tooltip_padding = 2 2
+tooltip_padding = 5 3
 tooltip_show_timeout = 0.3
 tooltip_hide_timeout = 0
-tooltip_background_id = 3
-tooltip_font = sans 10
-tooltip_font_color = #000000 80
+tooltip_background_id = 1
+tooltip_font = Sans 10
+tooltip_font_color = #FFFFFF 100
 
 # Mouse
 mouse_middle = close
