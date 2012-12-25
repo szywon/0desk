@@ -396,7 +396,7 @@
     </keybind>
     <keybind key="W-Return">
       <action name="Execute">
-        <command>terminal</command>
+        <command>exo-open --launch TerminalEmulator</command>
       </action>
     </keybind>
     <keybind key="Print">
@@ -411,7 +411,7 @@
     </keybind>
     <keybind key="C-A-Delete">
       <action name="Execute">
-        <command>terminal --maximize -T htop -e htop</command>
+        <command>exo-open --launch TerminalEmulator htop</command>
       </action>
     </keybind>
   </keyboard>
