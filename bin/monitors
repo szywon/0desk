@@ -122,7 +122,6 @@ shift
 
 xrandr > $XRANDR_TEXT
 allModes=$(grep -Po '(\d+x\d+(?=\s))|'"$FULL_OUTPUT_NAME_CLASS" $XRANDR_TEXT)
-echo $allModes
 ReadState $*
 
 case $cmd in
