@@ -23,10 +23,9 @@ END
 }
 
 OUTPUT_NAME_CLASS='[A-Z]+\d+'
+MODE_CLASS='\d+x\d+'
 FULL_OUTPUT_NAME_CLASS=$OUTPUT_NAME_CLASS'(?= (dis)?connected)'
 XRANDR_TEXT='/tmp/xrandr-'$USER
-
-xrandr > $XRANDR_TEXT
 
 function LidIsClosed {
   dbus-send --system --print-reply \
@@ -51,8 +50,6 @@ function Connected {
   fi
 }
 
-allModes=$(grep -Po '(\d+x\d+)|'"$FULL_OUTPUT_NAME_CLASS" $XRANDR_TEXT)
-
 function ModesOf {
   echo $allModes | grep -Po '(?<='"$1"' )(\d+x\d+ )+'
 }
@@ -76,12 +73,33 @@ function EchoRun {
   [ -f ~/.fehbg ] && sh ~/.fehbg
 }
 
-connected=$(Connected)
-first=$(echo $connected | cut -d ' ' -f 1)
-rest=$(echo $connected | cut -d ' ' -f 2-)
+function ReadState {
+  connected=$(Connected)
+  disconnected=$(Disconnected)
+  all="$connected $disconnected"
 
-disconnected=$(Disconnected)
-off=$(for out in $disconnected; do echo --output $out --off; done)
+  if [ -n "$*" ]; then
+    echo $all
+    mode=$(echo $* | grep -Po $MODE_CLASS)
+    connected=$(for out in $*; do
+      echo $out | grep -Pv $MODE_CLASS
+    done)
+
+    if [ -z "$connected" ]; then
+      connected=$(Connected)
+    else
+      disconnected=$(for out in $all; do
+        echo $out | grep -Pv $(echo $connected | tr ' ' '|')
+      done)
+    fi
+  fi
+
+  first=$(echo $connected | cut -d ' ' -f 1)
+  rest=$(echo $connected | cut -d ' ' -f 2-)
+
+  off=$(for out in $disconnected; do echo --output $out --off; done)
+}
+
 
 function Cloned {
   EchoRun xrandr $off \
@@ -98,7 +116,15 @@ function Stack {
     done)
 }
 
-case $1 in
+cmd=$1
+shift
+
+xrandr > $XRANDR_TEXT
+allModes=$(grep -Po '(\d+x\d+(?=\s))|'"$FULL_OUTPUT_NAME_CLASS" $XRANDR_TEXT)
+echo $allModes
+ReadState $*
+
+case $cmd in
   auto)
     EchoRun xrandr $off \
       $(for out in $connected; do echo --output $out --auto; done)
@@ -107,7 +133,10 @@ case $1 in
     Cloned --auto
   ;;
   mirror)
-    Cloned --mode $(BestCommonMode $connected)
+    if [ -z "$mode" ]; then
+      mode=$(BestCommonMode $connected)
+    fi
+    Cloned --mode $mode
   ;;
   horiz*)
     Stack --right-of
