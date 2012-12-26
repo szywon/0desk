@@ -129,6 +129,23 @@ Clone to `~/.0desk` or `~/.config/0desk`
 
 TDB.
 
+## Tips
+
+### X11 on Login
+
+It's convenient to set X11 to start after login on first virtual terminal (tty1), put this in your `~/.zlogin` or `~/.bash_login`:
+
+    if [ `tty` = /dev/tty1 ]; then
+      mv .xsession-errors .xsession-errors.old
+      exec startx > .xsession-errors 2>&1
+    fi
+
+### SSH Agent
+
+To start SSH agent in your session put this in your `~/.zlogin` or `~/.bash_login`:
+
+    eval `ssh-agent`
+
 ## License
 
 MIT, check the COPYING file.
