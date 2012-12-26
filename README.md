@@ -61,6 +61,40 @@ Button mapping:
       vert [outputs...]
         arrange monitors vertically with their native resolutions
 
+## Installation
+
+Dependencies (names as in ArchLinux):
+
+> alsa-utils
+  batti
+  exo
+  feh
+  gnome-icon-theme
+  gnome-themes-standard
+  htop
+  i3lock
+  network-manager-applet
+  openbox
+  pygtk
+  system-config-printer-gnome
+  thunar
+  tint2
+  volumeicon
+  xfce4-appfinder
+  xfce4-notifyd
+  xfce4-screenshooter
+  xorg-xrandr
+  xorg-xrdb
+
+
+Source Sans Pro from AUR or from the [repo](https://github.com/adobe/Source-Sans-Pro):
+
+> otf-source-sans-pro
+
+Clone to `~/.0desk` or `~/.config/0desk`
+
+The `install.sh` script is intended to set links to files in the repo but it's a TDB for now.
+
 ## Usage Tips
 
 There's no menu or launchers in the task bar.
@@ -95,41 +129,7 @@ Windows management:
 - Scroll Down on task bar: minimize
 - Middle button on task bar: close
 
-## Installation
-
-Dependencies (names as in ArchLinux):
-
-> alsa-utils
-  batti
-  exo
-  feh
-  gnome-icon-theme
-  gnome-themes-standard
-  htop
-  i3lock
-  network-manager-applet
-  openbox
-  pygtk
-  system-config-printer-gnome
-  thunar
-  tint2
-  volumeicon
-  xfce4-appfinder
-  xfce4-notifyd
-  xfce4-screenshooter
-  xorg-xrandr
-  xorg-xrdb
-
-
-Source Sans Pro from AUR or from the [repo](https://github.com/adobe/Source-Sans-Pro):
-
-> otf-source-sans-pro
-
-Clone to `~/.0desk` or `~/.config/0desk`
-
-TDB.
-
-## Tips
+## Configuration Tips
 
 ### X11 on Login
 
@@ -148,15 +148,15 @@ To start SSH agent in your session put this in your `~/.zlogin` or `~/.bash_logi
 
 ## Collaboration
 
-Changes that goes to the visual customization category probably belong to forks but I will welcome any suggestions on how to improve the default configuration even if it doesn't match my taste exactly ;).
-In that case we can create a fork for the default config and this repo will become an another customization fork ;).
+Changes that goes to the visual customization category probably belong to forks but I will welcome any suggestions on how to improve the default configuration even if it doesn't match my taste exactly :).
+In that case we can create a fork for the default config and this repo will become an another customization fork.
 
 Any contributions improving the functionality are welcome :).
 
 Some suggestions and how originally I thought about this project:
 
 - minimize dependencies but don't write something if it already exists and can be used without its DE (for example some stuff from XFCE like the exo is used)
-- graphical utilities probably should be written in pygtk (like the wallpaper setter and deadmouse)
+- graphical utilities probably should be written in pygtk (like the wallpaper setter and deadmouse) because of the previous point
 - avoid hard dependencies (leave the choice of things like a terminal, file manager and a browser to the user, so use `exo-open --launch TerminalEmulator` instead of hardcoding `terminal` for example)
 
 ## License
