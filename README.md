@@ -8,11 +8,10 @@ Here's how it looks like:
 
 Included stuff:
 
-- some utils in bin
+- some utils in bin for setting wallpaper and configuring monitors
 - xinitrc and Xresources
 - configs for fontconfig with pretty rendering and some common overrides (for sans-serif override you need the Source Sans Pro font)
 - configs for openbox
-- a simple GTK2 and GTK3 theme (based on Reverse and Adwaita respectively, they share colours but look is mostly like in the originals)
 - tint2 theme
 
 ## Scripts in bin
