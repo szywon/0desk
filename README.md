@@ -81,6 +81,7 @@ Commands:
 Monitors management:
 
 - Win-P -- `monitors auto` (a safe default to activate all connected monitors)
+- Win-Shift-P -- `monitors mirror`
 - Brightness Up/Down -- does what's advertised
 
 Windows management:

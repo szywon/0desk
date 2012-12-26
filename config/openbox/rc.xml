@@ -374,6 +374,11 @@
         <command>monitors auto</command>
       </action>
     </keybind>
+    <keybind key="W-S-p">
+      <action name="Execute">
+        <command>monitors mirror</command>
+      </action>
+    </keybind>
     <keybind key="XF86MonBrightnessUp">
       <action name="Execute">
         <command>xbacklight + 5</command>
