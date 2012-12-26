@@ -99,13 +99,33 @@ Windows management:
 
 Dependencies (names as in ArchLinux):
 
-> i3lock alsa-utils openbox tint2 feh network-manager-applet batti volumeicon thunar exo terminal pygtk xorg-xrandr xorg-xrdb gnome-icon-theme xfce4-appfinder xfce4-notifyd xfce4-screenshooter system-config-printer-gnome htop
+> alsa-utils
+  batti
+  exo
+  feh
+  gnome-icon-theme
+  gnome-themes-standard
+  htop
+  i3lock
+  network-manager-applet
+  openbox
+  pygtk
+  system-config-printer-gnome
+  thunar
+  tint2
+  volumeicon
+  xfce4-appfinder
+  xfce4-notifyd
+  xfce4-screenshooter
+  xorg-xrandr
+  xorg-xrdb
 
-From AUR:
+
+Source Sans Pro from AUR or from the [repo](https://github.com/adobe/Source-Sans-Pro):
 
 > otf-source-sans-pro
 
-Clone to ~/.0desk or ~/.config/0desk
+Clone to `~/.0desk` or `~/.config/0desk`
 
 TDB.
 
