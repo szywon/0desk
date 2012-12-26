@@ -1,23 +1,32 @@
 #!/bin/bash
 
+WHITE=$(echo -e '\033[1;37m')
+NORMAL=$(echo -e '\033[0m')
+
 function HelpText {
 cat <<END
 A simple video output controller.
 Allows to compose connected outputs in various ways.
-Discards LVDS1 (the usual laptop screen output) if the lid is closed.
+Treats LVDS1 (the usual laptop screen output) as disconnected if the lid is closed.
 
-Usage: monitors <command>
+Usage: monitors <command> [resolution] [output1 [output2 [...]]]
+
+Normally connected outputs are detected but you can override them by passing them explicitly
 
 Commands:
 
-  mirror - set a maximum resolution possible on all monitors
-           and display the same view on them
-  auto   - set all screens to their automatic resolutions, no change
-           to the relative positions is made
-  clone  - like 'auto' and positions all views to a shared upper left
-           corner
-  horiz  - like 'auto' and arrange views horizontally
-  vert   - like 'auto' and arrange views vertically
+  ${WHITE}auto${NORMAL} [outputs...]
+    set all connected or selected monitors to their native resolutions,
+    position them all with shared left upper corner
+    (useful when setting one monitor only)
+
+  ${WHITE}mirror${NORMAL} [resolution] [outputs...]
+    set selected resolution or the same optimal resolution on all screens
+
+  ${WHITE}horiz${NORMAL} [outputs...]
+    arrange monitors horizontally with their native resolutions
+  ${WHITE}vert${NORMAL} [outputs...]
+    arrange monitors vertically with their native resolutions
 
 END
 }
@@ -80,7 +89,6 @@ function ReadState {
   all="$connected $disconnected"
 
   if [ -n "$*" ]; then
-    echo $all
     mode=$(echo $* | grep -Po $MODE_CLASS)
     connected=$(for out in $*; do
       echo $out | grep -Pv $MODE_CLASS
@@ -101,11 +109,9 @@ function ReadState {
   off=$(for out in $disconnected; do echo --output $out --off; done)
 }
 
-
-function Cloned {
+function Standard {
   EchoRun xrandr $off \
-    --output $first --primary $* \
-    $(for out in $rest; do echo --output $out --same-as $first $*; done)
+    $(for out in $connected; do echo --output $out --pos 0x0 $*; done)
 }
 
 function Stack {
@@ -126,17 +132,13 @@ ReadState $*
 
 case $cmd in
   auto)
-    EchoRun xrandr $off \
-      $(for out in $connected; do echo --output $out --auto; done)
-  ;;
-  clone)
-    Cloned --auto
+    Standard --auto
   ;;
   mirror)
     if [ -z "$mode" ]; then
       mode=$(BestCommonMode $connected)
     fi
-    Cloned --mode $mode
+    Standard --mode $mode
   ;;
   horiz*)
     Stack --right-of

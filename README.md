@@ -38,20 +38,28 @@ Button mapping:
 
     A simple video output controller.
     Allows to compose connected outputs in various ways.
-    Discards LVDS1 (the usual laptop screen output) if the lid is closed.
+    Treats LVDS1 (the usual laptop screen output) as disconnected
+    if the lid is closed.
 
-    Usage: monitors <command>
+    Usage: monitors <command> [resolution] [output1 [output2 [...]]]
+
+    Normally connected outputs are detected but you can override
+    them by passing them explicitly
 
     Commands:
 
-      mirror - set a maximum resolution possible on all monitors
-               and display the same view on them
-      auto   - set all screens to their automatic resolutions, no change
-               to the relative positions is made
-      clone  - like 'auto' and positions all views to a shared upper left
-               corner
-      horiz  - like 'auto' and arrange views horizontally
-      vert   - like 'auto' and arrange views vertically
+      auto [outputs...]
+        set all connected or selected monitors to their native resolutions,
+        position them all with shared left upper corner
+        (useful when setting one monitor only)
+
+      mirror [resolution] [outputs...]
+        set selected resolution or the same optimal resolution on all screens
+
+      horiz [outputs...]
+        arrange monitors horizontally with their native resolutions
+      vert [outputs...]
+        arrange monitors vertically with their native resolutions
 
 ## Usage Tips
 
