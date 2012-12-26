@@ -8,11 +8,12 @@ Here's how it looks like:
 
 Included stuff:
 
-- some utils in bin for setting wallpaper and configuring monitors
-- xinitrc and Xresources
-- configs for fontconfig with pretty rendering and some common overrides (for sans-serif override you need the Source Sans Pro font)
-- configs for openbox
-- tint2 theme
+- some utils in bin for setting wallpaper and configuring monitors (check the bin section below)
+- some opinionated configs usable from lift off
+  - xinitrc and Xresources
+  - configs for fontconfig with pretty rendering and some common overrides (for sans-serif override you need the Source Sans Pro font)
+  - configs for openbox
+  - tint2 theme
 
 ## Scripts in bin
 
@@ -144,6 +145,19 @@ It's convenient to set X11 to start after login on first virtual terminal (tty1)
 To start SSH agent in your session put this in your `~/.zlogin` or `~/.bash_login`:
 
     eval `ssh-agent`
+
+## Collaboration
+
+Changes that goes to the visual customization category probably belong to forks but I will welcome any suggestions on how to improve the default configuration even if it doesn't match my taste exactly ;).
+In that case we can create a fork for the default config and this repo will become an another customization fork ;).
+
+Any contributions improving the functionality are welcome :).
+
+Some suggestions and how originally I thought about this project:
+
+- minimize dependencies but don't write something if it already exists and can be used without its DE (for example some stuff from XFCE like the exo is used)
+- graphical utilities probably should be written in pygtk (like the wallpaper setter and deadmouse)
+- avoid hard dependencies (leave the choice of things like a terminal, file manager and a browser to the user, so use `exo-open --launch TerminalEmulator` instead of hardcoding `terminal` for example)
 
 ## License
 
