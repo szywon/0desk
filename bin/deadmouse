@@ -3,8 +3,13 @@
 import pygtk
 import gtk
 import subprocess
+import sys
+import os.path
 
 pygtk.require('2.0')
+
+img_path = os.path.abspath(os.path.join(os.path.dirname(sys.argv[0]),
+                                        '../share/dead-mapping-black.svg'))
 
 deadbeef = 'deadbeef --'
 volume = 'amixer sset Master 1%'
@@ -44,7 +49,7 @@ event_box = gtk.EventBox()
 event_box.modify_bg(gtk.STATE_NORMAL, gtk.gdk.Color('#000'))
 
 icon = gtk.Image()
-icon.set_from_file('/usr/share/icons/hicolor/scalable/apps/deadbeef.svg')
+icon.set_from_file(img_path)
 
 event_box.add(icon)
 window.add(event_box)

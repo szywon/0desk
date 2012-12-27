@@ -27,6 +27,9 @@ Included stuff:
 It's designed to be used with a wireless mouse to control the player.
 It displays a full-screen window to catch all mouse input (and so you can turn off the monitor).
 To close the application you have to use keyboard like Alt-Tab, Alt-F4, etc.
+
+![deadmouse button mapping](http://szywon.github.com/0desk/dead-mapping.svg)
+
 Button mapping:
 
 - left: toggle play/pause
