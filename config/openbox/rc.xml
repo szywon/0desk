@@ -286,7 +286,7 @@
       <action name="ToggleFullscreen"/>
     </keybind>
     <keybind key="W-Up">
-      <action name="Maximize" />
+      <action name="Maximize"/>
     </keybind>
     <keybind key="W-Down">
       <action name="If">
@@ -294,10 +294,10 @@
         <maximizedhorizontal>no</maximizedhorizontal>
         <maximizedvertical>no</maximizedvertical>
         <then>
-          <action name="Iconify" />
+          <action name="Iconify"/>
         </then>
         <else>
-          <action name="Unmaximize" />
+          <action name="Unmaximize"/>
         </else>
       </action>
     </keybind>
@@ -465,7 +465,7 @@
         <action name="ToggleMaximize"/>
       </mousebind>
       <mousebind button="Up" action="Click">
-        <action name="Maximize" />
+        <action name="Maximize"/>
       </mousebind>
       <mousebind button="Down" action="Click">
         <action name="If">
@@ -473,10 +473,10 @@
           <maximizedhorizontal>no</maximizedhorizontal>
           <maximizedvertical>no</maximizedvertical>
           <then>
-            <action name="Iconify" />
+            <action name="Iconify"/>
           </then>
           <else>
-            <action name="Unmaximize" />
+            <action name="Unmaximize"/>
           </else>
         </action>
       </mousebind>
