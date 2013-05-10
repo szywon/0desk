@@ -419,6 +419,31 @@
         <command>exo-open --launch TerminalEmulator htop</command>
       </action>
     </keybind>
+    <keybind key="Scroll_Lock">
+      <action name="Execute">
+        <command>xfce4-terminal -I audio-speakers -x ncmpcpp</command>
+      </action>
+    </keybind>
+    <keybind key="C-F10">
+      <action name="Execute">
+        <command>mpc -q prev</command>
+      </action>
+    </keybind>
+    <keybind key="C-F11">
+      <action name="Execute">
+        <command>mpc -q toggle</command>
+      </action>
+    </keybind>
+    <keybind key="Pause">
+      <action name="Execute">
+        <command>mpc -q toggle</command>
+      </action>
+    </keybind>
+    <keybind key="C-F12">
+      <action name="Execute">
+        <command>mpc -q next</command>
+      </action>
+    </keybind>
   </keyboard>
   <mouse>
     <dragThreshold>1</dragThreshold>

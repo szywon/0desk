@@ -72,11 +72,11 @@
       <action name="Execute"><command>exo-open --launch MailReader</command></action>
     </item>
     <separator label="Programs" />
-    <item label="Sublime Text">
-      <action name="Execute"><command>subl</command></action>
+    <item label="Emacs">
+      <action name="Execute"><command>emacs</command></action>
     </item>
-    <item label="Deadbeef">
-      <action name="Execute"><command>deadbeef</command></action>
+    <item label="NCMPCPP">
+      <action name="Execute"><command>xfce4-terminal -I audio-speakers -x ncmpcpp</command></action>
     </item>
     <item label="Deadmouse">
       <action name="Execute"><command>deadmouse</command></action>
