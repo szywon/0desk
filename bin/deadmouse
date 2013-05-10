@@ -6,15 +6,25 @@ import subprocess
 
 pygtk.require('2.0')
 
-deadbeef = 'deadbeef --'
 volume = 'amixer sset Master 1%'
 suspend = 'dbus-send --print-reply --system --dest=org.freedesktop.UPower /org/freedesktop/UPower org.freedesktop.UPower.Suspend'
 
-click_cmds = {
+deadbeef = 'deadbeef --'
+
+deadbeef_click_cmds = {
     1: deadbeef + 'play-pause',
     2: suspend,
     8: deadbeef + 'prev',
     9: deadbeef + 'next'
+}
+
+mpc = 'mpc -q '
+
+click_cmds = {
+    1: mpc + 'toggle',
+    2: suspend,
+    8: mpc + 'prev',
+    9: mpc + 'next'
 }
 
 scroll_cmds = {
