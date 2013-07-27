@@ -105,12 +105,12 @@
 
     <item label="Zzz...">
       <action name="Execute">
-        <command>zzz</command>
+        <command>systemctl suspend</command>
       </action>
     </item>
     <item label="Hibernate">
       <action name="Execute">
-        <command>zzz hard</command>
+        <command>systemctl hibernate</command>
         <prompt>Hibernate?</prompt>
       </action>
     </item>
