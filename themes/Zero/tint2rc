@@ -6,11 +6,11 @@
 # ID 1
 rounded = 0
 border_width = 0
-background_color = #000000 67
+background_color = #000000 68
 border_color = #000000 60
 
 # ID 2
-rounded = 2
+rounded = 1
 border_width = 1
 background_color = #FFFFFF 20
 border_color = #FFFFFF 40
