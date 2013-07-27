@@ -37,11 +37,7 @@ FULL_OUTPUT_NAME_CLASS=$OUTPUT_NAME_CLASS'(?= (dis)?connected)'
 XRANDR_TEXT='/tmp/xrandr-'$USER
 
 function LidIsClosed {
-  dbus-send --system --print-reply \
-    --dest=org.freedesktop.UPower \
-    /org/freedesktop/UPower \
-    org.freedesktop.DBus.Properties.Get \
-    string:org.freedesktop.UPower string:LidIsClosed | grep -q true
+  cat /proc/acpi/button/lid/LID/state | grep -q closed
 }
 
 function Disconnected {
