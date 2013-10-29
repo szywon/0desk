@@ -272,6 +272,9 @@
     <keybind key="A-F4">
       <action name="Close"/>
     </keybind>
+    <keybind key="W-Delete">
+      <action name="Close"/>
+    </keybind>
     <keybind key="A-Escape">
       <action name="Lower"/>
       <action name="FocusToBottom"/>
@@ -389,6 +392,16 @@
         <command>xbacklight - 5</command>
       </action>
     </keybind>
+    <keybind key="S-W-Prior">
+      <action name="Execute">
+        <command>xbrightness +3000</command>
+      </action>
+    </keybind>
+    <keybind key="S-W-Next">
+      <action name="Execute">
+        <command>xbrightness -3000</command>
+      </action>
+    </keybind>
     <keybind key="A-F2">
       <action name="Execute">
         <command>xfrun4</command>
@@ -424,14 +437,9 @@
         <command>xfce4-terminal -I audio-speakers -x ncmpcpp</command>
       </action>
     </keybind>
-    <keybind key="C-F10">
+    <keybind key="W-Home">
       <action name="Execute">
         <command>mpc -q prev</command>
-      </action>
-    </keybind>
-    <keybind key="C-F11">
-      <action name="Execute">
-        <command>mpc -q toggle</command>
       </action>
     </keybind>
     <keybind key="Pause">
@@ -439,7 +447,7 @@
         <command>mpc -q toggle</command>
       </action>
     </keybind>
-    <keybind key="C-F12">
+    <keybind key="W-End">
       <action name="Execute">
         <command>mpc -q next</command>
       </action>

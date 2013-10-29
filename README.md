@@ -19,11 +19,9 @@ Included stuff:
 
 **xlock** and **autolock**: `autolock` is a background task that listens to dbus and launch xlock when computer is going to sleep or hibernate modes. `xlock` is a wrapper for i3lock that show an image of a lock :).
 
-**zzz** puts computer to sleep using dbus. `zzz hard` puts computer to hibernate mode.
+**wallpaper** is a simple GUI wallpaper selector (uses `feh` as the wallpaper setter).
 
-**wallpaper** simple graphical wallpaper selector.
-
-**deadmouse** is a dead pilot for DeaDBeeF.
+**deadmouse** is a remote control for MPD (used to be for DeaDBeeF).
 It's designed to be used with a wireless mouse to control the player.
 It displays a full-screen window to catch all mouse input (and so you can turn off the monitor).
 To close the application you have to use keyboard like Alt-Tab, Alt-F4, etc.
@@ -66,7 +64,7 @@ Button mapping:
 
 ## Installation
 
-Dependencies (names as in ArchLinux):
+Dependencies (names as in ArchLinux official repos):
 
 > alsa-utils
   batti
@@ -83,16 +81,17 @@ Dependencies (names as in ArchLinux):
   thunar
   tint2
   volumeicon
-  xfce4-appfinder
   xfce4-notifyd
+  xfce4-appfinder
   xfce4-screenshooter
   xorg-xrandr
   xorg-xrdb
 
+Optional dependencies from AUR:
 
-Source Sans Pro from AUR or from the [repo](https://github.com/adobe/Source-Sans-Pro):
-
-> otf-source-sans-pro
+-   Source Sans Pro from AUR or from the [repo](https://github.com/adobe/Source-Sans-Pro):
+    > otf-source-sans-pro
+-   xbrightness to controll brightness in software (if your monitor is too bright in the lowest setting)
 
 Clone to `~/.0desk` or `~/.config/0desk`
 
@@ -111,9 +110,10 @@ Commands:
 - right click on the desktop shows Openbox menu with some predefined apps and actions such as zzz, hibernate power off, etc.
 - Alt-F2 -- `xfrun4` (simple run dialog)
 - Alt-F3 -- `xfce4-appfinder` (list of all installed apps)
-- Win-Return -- `terminal`
+- Win-Return -- whatever application you have set in "Preferred Applications" `exo-preferred-applications`
 - PrintScreen -- screenshot of the whole screen (xfce4-screenshooter)
 - Alt-PrintScreen -- screenshot of the active window
+- Pause -- play/pause MPD
 
 Monitors management:
 
